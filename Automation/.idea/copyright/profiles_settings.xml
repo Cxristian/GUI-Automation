@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <settings default="Pivotal_GUI">
+    <module2copyright>
+      <element module="All" copyright="Pivotal_GUI" />
+    </module2copyright>
+  </settings>
+</component>

@@ -1,0 +1,68 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "Create a new project when user has at least 1 project",
+        "description": "",
+        "id": "project-management;create-a-new-project-when-user-has-at-least-1-project",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 128793124900,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I log in with username \"Test_User_Jala\" and password \"Control123\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Test_User_Jala",
+                  "offset": 24
+                },
+                {
+                  "val": "Control123",
+                  "offset": 54
+                }
+              ],
+              "location": "LoginSteps.logIn(String,String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 5,
+            "name": "I navigate to Project Dashboard page",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 6,
+            "name": "Icreate a new Project from Project Dashboard page with the following values",
+            "match": {},
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 2,
+            "name": "@Project"
+          }
+        ]
+      }
+    ],
+    "name": "Project management",
+    "description": "",
+    "id": "project-management",
+    "keyword": "Feature",
+    "uri": "login.feature"
+  }
+]
