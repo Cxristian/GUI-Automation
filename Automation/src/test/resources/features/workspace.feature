@@ -1,13 +1,11 @@
-#Feature: create workspace
-#
-#  Scenario: I login as a User, to create a workspace with fill valid information in a form
-#    Given   Start application from a dashboard page
-#    When    I click on the workspace tab
-#    And	  I click on the create workspace button
-#    And	  I fill the space Workspace Name with valid data
-#    And	  I click on the create button
-#    Then    I verify "/workspace/{idWorkspace}" url
-#    And     workspace page is displayed
+Feature: create workspace
+
+  Scenario: Create a new workspace for an user
+    Given I log in with username "Test_User_Jala" and password "Control123"
+    When  I navigate to Workspace Dashboard page
+    When  I create a new Workspace from Workspace Dashboard page with "New Workspace" values
+    Then  workspace page should be displayed
+
 #
 #  Scenario: I login as a User, to create a workspace name with only numbers in a form
 #    Given   Start application from a dashboard page

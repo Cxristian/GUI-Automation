@@ -65,8 +65,8 @@ public class PageTransporter {
         return new LoginPage();
     }
 
-    public ProjectDashboardPage navigateToProjectDashboardPage() {
+    public WorkspacePage navigateToProjectDashboardPage() {
         goToURL(baseURL.concat("dashboard"));
-        return new ProjectDashboardPage();
+        return new WorkspacePage();
     }
 }

@@ -31,6 +31,7 @@ public class LoginPage extends BasePage {
         clickNextSignInBtn();
         setPassword(password);
         clickNextSignInBtn();
+//        return new WorkspacePage();
     }
 
     private void setPassword(String password) {
