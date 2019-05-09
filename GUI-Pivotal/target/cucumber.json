@@ -1,0 +1,79 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "Create a new workspace for an user",
+        "description": "",
+        "id": "create-workspace;create-a-new-workspace-for-an-user",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 26822281086,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 4,
+                "value": "#    Given I log in with username \"Test_User_Jala\" and password \"Control123\""
+              }
+            ],
+            "line": 5,
+            "name": "I log in with username and password",
+            "match": {
+              "location": "LoginSteps.logInUser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1117353481,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I navigate to Workspace Dashboard page",
+            "match": {
+              "location": "WorkspaceSteps.navigateToProjectDashboardPage()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2896198,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I create a new Workspace from Workspace Dashboard page with \"New_Workspace\" values",
+            "match": {
+              "arguments": [
+                {
+                  "val": "New_Workspace",
+                  "offset": 61
+                }
+              ],
+              "location": "WorkspaceSteps.createANewWorkspace(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 8,
+            "name": "workspace page should be displayed",
+            "match": {},
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "create workspace",
+    "description": "",
+    "id": "create-workspace",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/workspace.feature"
+  }
+]
