@@ -16,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pivotal.BasePage;
+import pivotal.entities.Workspace;
 
 public class CreateWorkspacePopUp extends BasePage {
 
@@ -32,15 +33,17 @@ public class CreateWorkspacePopUp extends BasePage {
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(createWorkspaceLabel));
     }
-    public void workspaceName(String workspaceName) {
-        setWorkspaceName(workspaceName);
-        clickCreateWorkspaceBtn();
-    }
-    public WorkspacePage clickCreateWorkspaceBtn() {
-        nextCreateNewWorkspace.click();
+
+    public WorkspacePage createWorkspace(final Workspace workspace) {
+        setWorkspaceName(workspace.getNameWorkspace());
+        clickCreateNewWorkspaceBtn();
         return new WorkspacePage();
     }
-    public void setWorkspaceName(String workspaceName) {
+    private void clickCreateNewWorkspaceBtn() {
+        nextCreateNewWorkspace.click();
+    }
+    private void setWorkspaceName(final String workspaceName) {
+        nameWorkspaceTextBox.clear();
         nameWorkspaceTextBox.sendKeys(workspaceName);
     }
 }
