@@ -42,6 +42,7 @@ public class CreateWorkspacePopUp extends BasePage {
     private void clickCreateNewWorkspaceBtn() {
         nextCreateNewWorkspace.click();
     }
+
     private void setWorkspaceName(final String workspaceName) {
         nameWorkspaceTextBox.clear();
         nameWorkspaceTextBox.sendKeys(workspaceName);
