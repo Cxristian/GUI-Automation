@@ -44,14 +44,14 @@ formatter.match({
   "location": "LoginSteps.logInUser()"
 });
 formatter.result({
-  "duration": 131527502800,
+  "duration": 91698645800,
   "status": "passed"
 });
 formatter.match({
   "location": "WorkspaceSteps.navigateToProjectDashboardPage()"
 });
 formatter.result({
-  "duration": 1324845700,
+  "duration": 2690245100,
   "status": "passed"
 });
 formatter.match({
@@ -64,7 +64,7 @@ formatter.match({
   "location": "WorkspaceSteps.createANewWorkspace(String)"
 });
 formatter.result({
-  "duration": 6330787900,
+  "duration": 10211029900,
   "status": "passed"
 });
 formatter.match({});

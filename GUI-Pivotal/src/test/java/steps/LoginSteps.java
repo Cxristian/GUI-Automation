@@ -12,7 +12,7 @@ import java.util.Properties;
 public class LoginSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
-    Properties prop = new Properties();
+
 
     // Pages
     private LoginPage loginPage;
@@ -25,15 +25,7 @@ public class LoginSteps {
 
     @Given("^I log in with username and password$")
     public void logInUser() {
-        try {
-            InputStream input = new FileInputStream("Login.properties");
-            prop.load(input);
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-        String userName = (String) prop.get("user");
-        String password = (String) prop.get("pass");
         loginPage = pageTransporter.navigateToLoginPage();
-        loginPage.login(userName, password);
+        loginPage.login("user", "pass");
     }
 }

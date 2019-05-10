@@ -37,23 +37,12 @@ public class WebDriverConfig {
      * Initializes WebDriverConfig.
      */
     public void initialize() {
+        Properties prop = new Properties();
         browser = System.getProperty(BROWSER);  //Get the browser system property
-        try {
-            InputStream input = new FileInputStream("driver.properties");
 
-            Properties prop = new Properties();
-
-            // load a properties file
-            prop.load(input);
-
-            // get the properties value
             implicitWaitTime = Integer.parseInt(prop.getProperty("implicitWaitTime"));
             explicitWaitTime = Integer.parseInt(prop.getProperty("explicitWaitTime"));
             waitSleepTime = Integer.parseInt(prop.getProperty("waitSleepTime"));
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
 
     }
 

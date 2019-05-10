@@ -1,9 +1,12 @@
 package pivotal.ui;
 
+import Reader.ReaderFileProperties;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pivotal.BasePage;
+
+import java.util.Properties;
 
 /**
  * Created by Yesica on 07/05/2019.
@@ -28,9 +31,10 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String userName, String password) {
-        setUserName(userName);
+        Properties prop = ReaderFileProperties.getInstance().loadFile("Login.properties");
+        setUserName(prop.getProperty(userName) );
         clickNextSignInBtn();
-        setPassword(password);
+        setPassword(prop.getProperty(password));
         clickNextSignInBtn();
 //        return new WorkspacePage();
     }
