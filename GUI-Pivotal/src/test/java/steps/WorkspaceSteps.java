@@ -13,6 +13,7 @@
 package steps;
 
 import cucumber.api.java.en.When;
+import pivotal.entities.Workspace;
 import pivotal.ui.CreateWorkspacePopUp;
 import pivotal.ui.PageTransporter;
 import pivotal.ui.WorkspaceDashboardPage;
@@ -21,7 +22,7 @@ import pivotal.ui.WorkspacePage;
 public class WorkspaceSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
-
+    private Workspace wp;
     // Pages
     private WorkspacePage workspacePage;
     private CreateWorkspacePopUp createWorkspacePopUp;
@@ -35,7 +36,12 @@ public class WorkspaceSteps {
     }
 
     @When("^I create a new Workspace from Workspace Dashboard page with \"([^\"]*)\" values$")
-    public void createANewWorkspaceFromWorkspaceDashboardPage(String workspace) {
+    public void createANewWorkspace(final String workspace) {
+        createWorkspacePopUp = workspaceDashboardPage.clickCreateWorkspaceBtn();
+        wp = new Workspace();
+        wp.setNameWorkspace(workspace);
+        workspacePage = createWorkspacePopUp.createWorkspace(wp);
+    }
 
     }
 }
