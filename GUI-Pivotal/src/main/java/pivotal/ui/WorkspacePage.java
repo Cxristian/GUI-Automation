@@ -35,7 +35,11 @@ public class WorkspacePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(workspaceForm));
     }
 
-//    public String getEndPointWorkspace() {
-//
-//    }
+    public  WorkspaceTopBar getTopBar() {
+        return new WorkspaceTopBar();
+    }
+
+    public String isWorkspacePanelDisplayed() {
+        return driver.findElement(By.cssSelector(".sidebar_wrapper")).getAttribute("class");
+    }
 }

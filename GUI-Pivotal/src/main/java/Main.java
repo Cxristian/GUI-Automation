@@ -15,7 +15,6 @@ import core.selenium.WebDriverConfig;
 public class Main {
     public static void main(String[] args) {
 
-
         System.out.println(WebDriverConfig.getInstance().getExplicitWaitTime());
     }
 }

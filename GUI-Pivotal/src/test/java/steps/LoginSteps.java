@@ -12,8 +12,6 @@ import java.util.Properties;
 public class LoginSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
-
-
     // Pages
     private LoginPage loginPage;
 

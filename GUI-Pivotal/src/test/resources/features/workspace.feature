@@ -1,13 +1,20 @@
 Feature: create workspace
+  Background:
+    Given I log in with username and password
 
   Scenario: Create a new workspace for an user
-#    Given I log in with username "Test_User_Jala" and password "Control123"
-    Given I log in with username and password
     When  I navigate to Workspace Dashboard page
-    When  I create a new Workspace from Workspace Dashboard page with "New_Workspace" values
+    And  I create a new Workspace from Workspace Dashboard page with "Test_Workspace" value
     Then  workspace page should be displayed
+    When  I navigate to Workspace Dashboard page
+    Then  workspace Dashboard page should be displayed the new workspace
 
-#
+#  Scenario: Delete a workspace in Pivotal Tracker
+#    And I create a new account "New Account" in Pivotal Tracker
+#    When I enter to the Settings and delete the account with name "New Account"
+#    Then I should see a yellow message "New Account was successfully deleted."
+#    And I should see all of the accounts except the deleted account
+
 #  Scenario: Create a workspace name with only numbers in a form
 #    Given   I log in with username and password
 #    When  I navigate to Workspace Dashboard page

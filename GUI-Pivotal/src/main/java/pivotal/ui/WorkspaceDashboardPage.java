@@ -12,10 +12,12 @@
 
 package pivotal.ui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pivotal.BasePage;
+import pivotal.entities.SearchValue;
 
 public class WorkspaceDashboardPage extends BasePage {
 
@@ -41,5 +43,9 @@ public class WorkspaceDashboardPage extends BasePage {
     public CreateWorkspacePopUp clickCreateWorkspaceBtn() {
         createWorkspaceBtn.click();
         return new CreateWorkspacePopUp();
+    }
+
+    public Boolean verifyNewWorkspaceInList(String workspaceName) {
+        return SearchValue.existValueInList(workspaceName, driver.findElements(By.xpath("//div[@class='WorkspacesPane']//a[@class='WorkspaceTile__name']")));
     }
 }

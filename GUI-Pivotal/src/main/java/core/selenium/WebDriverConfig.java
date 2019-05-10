@@ -2,6 +2,7 @@ package core.selenium;
 
 import java.io.*;
 import java.util.Properties;
+import Reader.ReaderFileProperties;
 
 /**
  * Class to manage the config of web driver.
@@ -37,13 +38,11 @@ public class WebDriverConfig {
      * Initializes WebDriverConfig.
      */
     public void initialize() {
-        Properties prop = new Properties();
-        browser = System.getProperty(BROWSER);  //Get the browser system property
-
-            implicitWaitTime = Integer.parseInt(prop.getProperty("implicitWaitTime"));
-            explicitWaitTime = Integer.parseInt(prop.getProperty("explicitWaitTime"));
-            waitSleepTime = Integer.parseInt(prop.getProperty("waitSleepTime"));
-
+        Properties prop = ReaderFileProperties.getInstance().loadFile("driver.properties");
+//        browser = System.getProperty(BROWSER);  //Get the browser system property
+        implicitWaitTime = Integer.parseInt(prop.getProperty("implicitWaitTime"));
+        explicitWaitTime = Integer.parseInt(prop.getProperty("explicitWaitTime"));
+        waitSleepTime = Integer.parseInt(prop.getProperty("waitSleepTime"));
     }
 
     /**

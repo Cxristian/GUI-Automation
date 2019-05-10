@@ -20,27 +20,28 @@ import pivotal.entities.Workspace;
 
 public class CreateWorkspacePopUp extends BasePage {
 
-    @FindBy(xpath = "//h1[contains(.,'Create new workspace')]")
-    private WebElement createWorkspaceLabel;
+//    @FindBy(xpath = "//div[@class=\"tc_modal tc-form-modal XC2G6__WorkspaceModal\"]")
+//    private WebElement workspaceForm;
 
-    @FindBy(xpath = "//input[@type='text']")
+    @FindBy(xpath = "//input[@data-aid='input']")
     private WebElement nameWorkspaceTextBox;
 
     @FindBy(xpath = "//button[contains(.,'Create')]")
-    private WebElement nextCreateNewWorkspace;
+    private WebElement createNewWorkspace;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(createWorkspaceLabel));
+        wait.until(ExpectedConditions.visibilityOf(nameWorkspaceTextBox));
     }
 
     public WorkspacePage createWorkspace(final Workspace workspace) {
-        setWorkspaceName(workspace.getNameWorkspace());
+        setWorkspaceName(workspace.getWorkspaceName());
         clickCreateNewWorkspaceBtn();
         return new WorkspacePage();
     }
+
     private void clickCreateNewWorkspaceBtn() {
-        nextCreateNewWorkspace.click();
+        createNewWorkspace.click();
     }
 
     private void setWorkspaceName(final String workspaceName) {

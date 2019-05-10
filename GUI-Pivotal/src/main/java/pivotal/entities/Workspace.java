@@ -1,22 +1,22 @@
 package pivotal.entities;
 
 public class Workspace {
-    private String nameWorkspace;
-    private String urlProjects;
+    private String workspaceName;
+    private String urlWorkspace;
 
-    public String getNameWorkspace() {
-        return nameWorkspace;
+    public String getWorkspaceName() {
+        return workspaceName;
     }
 
-    public void setNameWorkspace(String nameWorkspace) {
-        this.nameWorkspace = nameWorkspace;
+    public void setWorkspaceName(String workspaceName) {
+        this.workspaceName = workspaceName;
     }
 
-    public String getUrlProjects() {
-        return urlProjects;
+    public String getUrlWorkspace() {
+        return urlWorkspace;
     }
 
-    public void setUrlProjects(String urlProjects) {
-        this.urlProjects = urlProjects;
+    public void setUrlWorkspace(String urlWorkspace) {
+        this.urlWorkspace = urlWorkspace;
     }
 }

@@ -36,7 +36,6 @@ public class LoginPage extends BasePage {
         clickNextSignInBtn();
         setPassword(prop.getProperty(password));
         clickNextSignInBtn();
-//        return new WorkspacePage();
     }
 
     private void setPassword(String password) {
@@ -47,7 +46,7 @@ public class LoginPage extends BasePage {
         nextSignInBtn.click();
     }
 
-    public void setUserName(String userName) {
+    private void setUserName(String userName) {
         userNameTextBox.sendKeys(userName);
     }
 }

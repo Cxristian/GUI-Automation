@@ -12,6 +12,24 @@
 
 package core.selenium.webdrivers;
 
+import org.openqa.selenium.WebDriver;
+
 public class FactoryBrowser {
 
+    public static WebDriver getManager(TypeBrowser type) {
+        WebDriver driverManager;
+
+        switch (type) {
+            case CHROME:
+                driverManager = new Chrome().initDriver();
+                break;
+            case FIREFOX:
+                driverManager = new FireFox().initDriver();
+                break;
+            default:
+                driverManager = new Chrome().initDriver();
+                break;
+        }
+        return driverManager;
+    }
 }

@@ -12,9 +12,9 @@
 
 package steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.testng.Assert;
 import pivotal.entities.Workspace;
 import pivotal.ui.CreateWorkspacePopUp;
 import pivotal.ui.PageTransporter;
@@ -22,34 +22,42 @@ import pivotal.ui.WorkspaceDashboardPage;
 import pivotal.ui.WorkspacePage;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class WorkspaceSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
+
+    private CreateWorkspacePopUp createWorkspacePopUp;
     private Workspace workspace;
+
     // Pages
     private WorkspacePage workspacePage;
-    private CreateWorkspacePopUp createWorkspacePopUp;
     private WorkspaceDashboardPage workspaceDashboardPage;
 
     @When("^I navigate to Workspace Dashboard page$")
     public void navigateToProjectDashboardPage() {
         workspaceDashboardPage = pageTransporter.navigateToProjectDashboardPage();
         workspaceDashboardPage.clickWorkspaceTab();
-        workspaceDashboardPage.clickCreateWorkspaceBtn();
     }
 
-    @When("^I create a new Workspace from Workspace Dashboard page with \"([^\"]*)\" values$")
+    @When("^I create a new Workspace from Workspace Dashboard page with \"([^\"]*)\" value$")
     public void createANewWorkspace(final String workspaceName) {
         createWorkspacePopUp = workspaceDashboardPage.clickCreateWorkspaceBtn();
-        this.workspace = new Workspace();
-        this.workspace.setNameWorkspace(workspaceName);
-        workspacePage = createWorkspacePopUp.createWorkspace(this.workspace);
+        workspace = new Workspace();
+        workspace.setWorkspaceName(workspaceName);
+        workspacePage = createWorkspacePopUp.createWorkspace(workspace);
     }
 
     @Then("^workspace page should be displayed$")
-    public void workspacePageShouldBeDisplayed() {
-//        workspacePage = pageTransporter.navigateWorkspacePage();
-//        assertEquals(workspacePage.getTopBar().)
+    public void verifyWorkspacePageDisplayed() {
+        assertEquals(workspacePage.getTopBar().getWorkspaceName(), workspace.getWorkspaceName(),"the workspace name not displayed");
+        assertEquals(workspacePage.isWorkspacePanelDisplayed(),"sidebar_wrapper" ,"tue workspace panel not displayed");
+    }
+
+    @Then("^workspace Dashboard page should be displayed the new workspace$")
+    public void verifyWorkspaceDashboardPageShouldBeDisplayedTheNewWorkspace() {
+        boolean existWorkspace = workspaceDashboardPage.verifyNewWorkspaceInList(workspace.getWorkspaceName());
+        assertTrue(existWorkspace,"Don't exist the account in the Account Page");
     }
 }
