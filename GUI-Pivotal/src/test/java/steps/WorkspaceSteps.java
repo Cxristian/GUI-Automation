@@ -41,6 +41,4 @@ public class WorkspaceSteps {
         wp.setNameWorkspace(workspace);
         workspacePage = createWorkspacePopUp.createWorkspace(wp);
     }
-
 }
-
