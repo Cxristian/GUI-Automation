@@ -35,7 +35,7 @@ public class WorkspaceSteps {
     }
 
     @When("^I create a new Workspace from Workspace Dashboard page with \"([^\"]*)\" values$")
-    public void createANewWorkspace(String workspace) {
+    public void createANewWorkspaceFromWorkspaceDashboardPage(String workspace) {
 
     }
 }
