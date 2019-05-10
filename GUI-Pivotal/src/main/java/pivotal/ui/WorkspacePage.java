@@ -12,6 +12,7 @@
 
 package pivotal.ui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,12 +23,19 @@ public class WorkspacePage extends BasePage {
     @FindBy(css = ".sidebar_wrapper")
     private WebElement workspaceForm;
 
-    @FindBy(xpath = "span[contains(text(),'add projects')]")
+    @FindBy(xpath = "//span[contains(text(),'add projects')]")
     private WebElement workspaceAddProject;
+
+    @FindBy(xpath = "//a[@href='/n/workspaces/744725']")
+    private WebElement workspacePageStoriesTab;
+
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(workspaceForm));
     }
 
+//    public String getEndPointWorkspace() {
+//
+//    }
 }

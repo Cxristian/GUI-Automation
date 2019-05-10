@@ -69,4 +69,9 @@ public class PageTransporter {
         goToURL(baseURL.concat("dashboard"));
         return new WorkspaceDashboardPage();
     }
+
+//    public WorkspacePage navigateWorkspacePage() {
+//        goToURL(baseURL.concat("dashboard"));
+//        return new WorkspaceDashboardPage();
+//    }
 }

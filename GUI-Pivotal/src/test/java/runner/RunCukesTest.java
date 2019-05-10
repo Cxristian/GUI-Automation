@@ -25,8 +25,8 @@ import org.testng.annotations.AfterTest;
 
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 
-//    @AfterTest
-//    public void afterExecution() {
-//        WebDriverManager.getInstance().getWebDriver().close();
-//    }
+    @AfterTest
+    public void afterExecution() {
+        WebDriverManager.getInstance().getWebDriver().close();
+    }
 }
