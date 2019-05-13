@@ -70,8 +70,8 @@ public class PageTransporter {
         return new WorkspaceDashboardPage();
     }
 
-    public WorkspaceSettingsPage navigateToWorkspaceSettingsPage(String url) {
+    public WorkspaceMorePage navigateToWorkspaceMorePage(String url) {
         goToURL(url);
-        return new WorkspaceSettingsPage();
+        return new WorkspaceMorePage();
     }
 }

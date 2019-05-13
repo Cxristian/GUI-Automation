@@ -13,13 +13,11 @@
 package steps;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pivotal.entities.Workspace;
-import pivotal.ui.CreateWorkspacePopUp;
-import pivotal.ui.PageTransporter;
-import pivotal.ui.WorkspaceDashboardPage;
-import pivotal.ui.WorkspacePage;
+import pivotal.ui.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -34,6 +32,8 @@ public class WorkspaceSteps {
     // Pages
     private WorkspacePage workspacePage;
     private WorkspaceDashboardPage workspaceDashboardPage;
+    private WorkspaceMorePage workspaceMorePage;
+    private WorkspaceStoriesPage workspaceStoriesPage;
 
     @When("^I navigate to Workspace Dashboard page$")
     public void navigateToProjectDashboardPage() {
@@ -60,4 +60,29 @@ public class WorkspaceSteps {
         boolean existWorkspace = workspaceDashboardPage.verifyNewWorkspaceInList(workspace.getWorkspaceName());
         assertTrue(existWorkspace,"Don't exist the account in the Account Page");
     }
+
+
+    @When("^I go to the more page and delete the Workspace with the name \"([^\"]*)\"\\.$")
+    public void goToTheMorePageAndDeleteTheWorkspace(String workspaceName) {
+        workspaceMorePage = workspacePage.isWorkspaceMorePage();
+        workspaceMorePage.workspaceDelete();
+    }
+
+    @Then("^I can see a yellow message \"([^\"]*)\"$")
+    public void seeAYellowMessage(String message) {
+        assertEquals(message, workspaceDashboardPage.getMessageDelete());
+    }
+
+    @When("^I navigate to Workspace page$")
+    public void navigateToWorkspacePage() {
+        workspaceStoriesPage = workspacePage.getTopBar();
+    }
+
+
+    @Then("^I attach a workspace to  a project$")
+    public void iAttachAWorkspaceToAProject() {
+        workspaceStoriesPage.clickAddProjectBtn();
+    }
+
+
 }

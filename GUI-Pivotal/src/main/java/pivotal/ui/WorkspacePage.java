@@ -26,20 +26,33 @@ public class WorkspacePage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'add projects')]")
     private WebElement workspaceAddProject;
 
-    @FindBy(xpath = "//a[@href='/n/workspaces/744725']")
-    private WebElement workspacePageStoriesTab;
+    @FindBy(xpath = "//a[@data-aid='navTab-more']")
+    private WebElement workspaceMoreBtn;
 
+    @FindBy(xpath = "//a[@data-aid='navTab-stories']")
+    private WebElement workspaceStoriesBtn;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(workspaceForm));
     }
 
-    public  WorkspaceTopBar getTopBar() {
-        return new WorkspaceTopBar();
+    public WorkspaceStoriesPage getTopBar() {
+        return new WorkspaceStoriesPage();
     }
 
     public String isWorkspacePanelDisplayed() {
-        return driver.findElement(By.cssSelector(".sidebar_wrapper")).getAttribute("class");
+        return workspaceForm.getAttribute("class");
     }
+
+    public WorkspaceMorePage isWorkspaceMorePage() {
+        workspaceMoreBtn.click();
+        return new WorkspaceMorePage();
+    }
+
+    public WorkspaceStoriesPage isWorkspaceStoriesPage() {
+        workspaceStoriesBtn.click();
+        return new WorkspaceStoriesPage();
+    }
+
 }

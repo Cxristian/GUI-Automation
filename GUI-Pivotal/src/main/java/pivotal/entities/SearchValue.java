@@ -7,7 +7,7 @@ import java.util.List;
 public class SearchValue {
     public static boolean existValueInList(String value, List<WebElement> list) {
         for (WebElement e: list) {
-            if (e.getText().equals(value.toUpperCase())){
+            if (e.getText().equals(value)){
                 return true;
             } else {
                 continue;

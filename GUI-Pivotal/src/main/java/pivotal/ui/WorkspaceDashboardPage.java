@@ -24,19 +24,19 @@ public class WorkspaceDashboardPage extends BasePage {
     @FindBy(id = "create-workspace-button")
     private WebElement createWorkspaceBtn;
 
-    @FindBy(css = "div[class='Dashboard__Tabs__wrapper']")
-    private WebElement workspaceTab;
+    @FindBy(css = "span[class='Dashboard__Tabs__tab']")
+    private WebElement workspaceBtnTab;
 
-    @FindBy(xpath = "//span[contains(.,'Workspaces')]")
-    private WebElement tabWorkspace;
+    @FindBy(id = "notice")
+    private WebElement workspaceMessageDeleteTxt;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(workspaceTab));
+        wait.until(ExpectedConditions.visibilityOf(workspaceBtnTab));
     }
 
     public WorkspaceDashboardPage clickWorkspaceTab() {
-        tabWorkspace.click();
+        workspaceBtnTab.click();
         return new WorkspaceDashboardPage();
     }
 
@@ -45,7 +45,11 @@ public class WorkspaceDashboardPage extends BasePage {
         return new CreateWorkspacePopUp();
     }
 
-    public Boolean verifyNewWorkspaceInList(String workspaceName) {
-        return SearchValue.existValueInList(workspaceName, driver.findElements(By.xpath("//div[@class='WorkspacesPane']//a[@class='WorkspaceTile__name']")));
+    public boolean verifyNewWorkspaceInList(String workspaceName) {
+        return SearchValue.existValueInList(workspaceName, driver.findElements(By.xpath("//div[@class='WorkspaceTiles']//a[@class='WorkspaceTile__name']")));
+    }
+
+    public String getMessageDelete() {
+        return workspaceMessageDeleteTxt.getText();
     }
 }

@@ -2,18 +2,28 @@ Feature: create workspace
   Background:
     Given I log in with username and password
 
-  Scenario: Create a new workspace for an user
-    When  I navigate to Workspace Dashboard page
-    And  I create a new Workspace from Workspace Dashboard page with "Test_Workspace" value
-    Then  workspace page should be displayed
-    When  I navigate to Workspace Dashboard page
-    Then  workspace Dashboard page should be displayed the new workspace
+#  Scenario: Create a new workspace for an user
+#    When  I navigate to Workspace Dashboard page
+#    And  I create a new Workspace from Workspace Dashboard page with "Test_Workspace" value
+#    Then  workspace page should be displayed
+#    When  I navigate to Workspace Dashboard page
+#    Then  workspace Dashboard page should be displayed the new workspace
 
 #  Scenario: Delete a workspace in Pivotal Tracker
-#    And I create a new account "New Account" in Pivotal Tracker
-#    When I enter to the Settings and delete the account with name "New Account"
-#    Then I should see a yellow message "New Account was successfully deleted."
-#    And I should see all of the accounts except the deleted account
+#    When I navigate to Workspace Dashboard page
+#    And  I create a new Workspace from Workspace Dashboard page with "Test_Workspace" value
+#    Then workspace page should be displayed
+#    When I go to the more page and delete the Workspace with the name "Test_Workspace".
+#    Then I can see a yellow message "Test_Workspace was successfully deleted."
+
+  Scenario: Create a workspace that has an associated Stories
+    When I navigate to Workspace Dashboard page
+    And  I create a new Workspace from Workspace Dashboard page with "Test_Workspace" value
+    Then workspace page should be displayed
+    When I navigate to Workspace page
+    Then I attach a workspace to  a project
+
+
 
 #  Scenario: Create a workspace name with only numbers in a form
 #    Given   I log in with username and password
