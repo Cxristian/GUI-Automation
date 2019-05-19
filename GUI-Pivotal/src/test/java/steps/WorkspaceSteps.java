@@ -12,10 +12,13 @@
 
 package steps;
 
+
 import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pivotal.api.WorkspaceApi;
+import pivotal.entities.Context;
+import pivotal.entities.ReaderIdInURL;
 import pivotal.entities.Workspace;
 import pivotal.ui.*;
 
@@ -24,16 +27,24 @@ import static org.testng.Assert.assertTrue;
 
 public class WorkspaceSteps {
 
+    private Context context;
     PageTransporter pageTransporter = PageTransporter.getInstance();
 
     private CreateWorkspacePopUp createWorkspacePopUp;
     private Workspace workspace;
+
+    private WorkspaceApi workspaceApi;
 
     // Pages
     private WorkspacePage workspacePage;
     private WorkspaceDashboardPage workspaceDashboardPage;
     private WorkspaceMorePage workspaceMorePage;
     private WorkspaceStoriesPage workspaceStoriesPage;
+
+    public WorkspaceSteps (Context context) {
+        this.context = context;
+        workspace = context.getWorkspace();
+    }
 
     @When("^I navigate to Workspace Dashboard page$")
     public void navigateToProjectDashboardPage() {
@@ -44,15 +55,15 @@ public class WorkspaceSteps {
     @When("^I create a new Workspace from Workspace Dashboard page with \"([^\"]*)\" value$")
     public void createANewWorkspace(final String workspaceName) {
         createWorkspacePopUp = workspaceDashboardPage.clickCreateWorkspaceBtn();
-        workspace = new Workspace();
         workspace.setWorkspaceName(workspaceName);
         workspacePage = createWorkspacePopUp.createWorkspace(workspace);
     }
 
     @Then("^workspace page should be displayed$")
     public void verifyWorkspacePageDisplayed() {
+        workspace.setId(ReaderIdInURL.getInstance().getIdNumber(workspacePage.getWorkspaceUrl()));
         assertEquals(workspacePage.getTopBar().getWorkspaceName(), workspace.getWorkspaceName(),"the workspace name not displayed");
-        assertEquals(workspacePage.isWorkspacePanelDisplayed(),"sidebar_wrapper" ,"tue workspace panel not displayed");
+        assertEquals(workspacePage.isWorkspacePanelDisplayed(),"sidebar_wrapper" ,"the workspace panel not displayed");
     }
 
     @Then("^workspace Dashboard page should be displayed the new workspace$")
@@ -64,13 +75,14 @@ public class WorkspaceSteps {
 
     @When("^I go to the more page and delete the Workspace with the name \"([^\"]*)\"\\.$")
     public void goToTheMorePageAndDeleteTheWorkspace(String workspaceName) {
-        workspaceMorePage = workspacePage.isWorkspaceMorePage();
+        workspaceMorePage = workspacePage.goToWorkspaceMorePage();
         workspaceMorePage.workspaceDelete();
     }
 
     @Then("^I can see a yellow message \"([^\"]*)\"$")
     public void seeAYellowMessage(String message) {
-        assertEquals(message, workspaceDashboardPage.getMessageDelete());
+        assertEquals(message, workspaceDashboardPage.getMessageDelete(), "not successfully deleted");
+        assertTrue(false);
     }
 
     @When("^I navigate to Workspace page$")
@@ -78,11 +90,29 @@ public class WorkspaceSteps {
         workspaceStoriesPage = workspacePage.getTopBar();
     }
 
-
-    @Then("^I attach a workspace to  a project$")
-    public void iAttachAWorkspaceToAProject() {
+    @When("^I attach a workspace to a project$")
+    public void attachAWorkspaceToAProject() {
         workspaceStoriesPage.clickAddProjectBtn();
     }
 
 
+    @Then("^workspace page should be displayed with the project$")
+    public void verifyWorkspacePageShouldBeDisplayedWithTheProject() {
+        assertEquals(workspacePage.getTopBar().getWorkspaceName(),workspace.getWorkspaceName(),"the workspace name not displayed");
+        assertEquals(workspacePage.isWorkspacePanelDisplayed(),"sidebar_wrapper" ,"the workspace panel not displayed");
+        boolean existWorkspace = workspaceStoriesPage.isSectionProjectInWorkspace();
+        assertTrue(existWorkspace,"Don't exist the account in the Account Page");
+    }
+
+    @When("^I update a Workspace from Workspace Settings with the name \"([^\"]*)\"$")
+    public void updateAWorkspaceFromWorkspaceSettingsWithTheName(String UpdateWorkspace) {
+        workspaceMorePage = workspacePage.goToWorkspaceMorePage();
+        workspaceMorePage.setWorkspaceName(UpdateWorkspace);
+        workspace.setWorkspaceName(UpdateWorkspace);
+    }
+
+    @Then("^I can see a green message \"([^\"]*)\"$")
+    public void canSeeAGreenMessage(String message) {
+        assertEquals(message, workspaceMorePage.getMessageSuccesfully(),"not successfully saved");
+    }
 }

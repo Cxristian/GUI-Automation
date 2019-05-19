@@ -6,15 +6,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pivotal.BasePage;
 
 public class WorkspaceStoriesPage extends BasePage {
-
-    @FindBy(css = ".raw_context_name")
-    private WebElement workspaceNameTab;
+//
+//    @FindBy(css = "//span[@class='tc_context_name']")
+//    private WebElement workspaceNameTab;
 
     @FindBy(xpath = "//input[@name='search']")
     private WebElement workspaceNameTxt;
 
     @FindBy(xpath = "//span[@class='raw_context_name']")
     private WebElement workspaceNameLbl;
+
+    @FindBy(xpath = "//a[@class='_257Dx__projectNavTab _2l-eS__projectNavTab--current']")
+    private WebElement workspaceTabURL;
 
     @FindBy(xpath = "//button[@data-aid='edit-workspace']")
     private WebElement workspaceEditBtn;
@@ -28,9 +31,16 @@ public class WorkspaceStoriesPage extends BasePage {
     @FindBy(css = "button[class='save']")
     private WebElement workspaceBtnSave;
 
+    @FindBy(xpath = "//section[@class='projects']")
+    private WebElement sectionProjects;
+
+//    @FindBy(xpath = "//li[@class=\"project\"]")
+//    private WebElement sectionProjectsListProject;
+
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(workspaceNameTab));
+        wait.until(ExpectedConditions.visibilityOf(workspaceNameLbl));
     }
 
     public String getWorkspaceName() {
@@ -57,5 +67,12 @@ public class WorkspaceStoriesPage extends BasePage {
         return new WorkspacePage();
     }
 
+    public String getWorkspaceUrl () {
+        return workspaceTabURL.getAttribute("href");
+    }
 
+
+    public boolean isSectionProjectInWorkspace() {
+        return sectionProjects.isDisplayed();
+    }
 }

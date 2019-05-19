@@ -1,29 +1,28 @@
 package steps;
 
+import core.selenium.WebDriverManager;
 import cucumber.api.java.en.Given;
+import org.openqa.selenium.WebDriver;
 import pivotal.ui.LoginPage;
 import pivotal.ui.PageTransporter;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class LoginSteps {
 
     PageTransporter pageTransporter = PageTransporter.getInstance();
+
     // Pages
     private LoginPage loginPage;
-
-//    @Given("^I log in with username \"([^\"]*)\" and password \"([^\"]*)\"$")
-//    public void logIn(final String userName, final String password) {
-//        loginPage = pageTransporter.navigateToLoginPage();
-//        loginPage.login(userName, password);
-//    }
+    protected WebDriver webDriver;
 
     @Given("^I log in with username and password$")
     public void logInUser() {
-        loginPage = pageTransporter.navigateToLoginPage();
-        loginPage.login("user", "pass");
+
+        webDriver = WebDriverManager.getInstance().getWebDriver();
+        String title = webDriver.getTitle();
+        if (title.toLowerCase().equals("pivotal tracker - sign in") || title.equals("")) {
+            loginPage = pageTransporter.navigateToLoginPage();
+            loginPage.login("user", "pass");
+        }
     }
+
 }

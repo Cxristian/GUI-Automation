@@ -32,6 +32,10 @@ public class WorkspacePage extends BasePage {
     @FindBy(xpath = "//a[@data-aid='navTab-stories']")
     private WebElement workspaceStoriesBtn;
 
+ //   @FindBy(xpath = "//a[@class='_257Dx__projectNavTab _2l-eS__projectNavTab--current']")
+    @FindBy(css = "a[class='_257Dx__projectNavTab _2l-eS__projectNavTab--current']")
+    private WebElement workspaceTabURL;
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(workspaceForm));
@@ -45,14 +49,18 @@ public class WorkspacePage extends BasePage {
         return workspaceForm.getAttribute("class");
     }
 
-    public WorkspaceMorePage isWorkspaceMorePage() {
+    public WorkspaceMorePage goToWorkspaceMorePage() {
         workspaceMoreBtn.click();
         return new WorkspaceMorePage();
     }
 
-    public WorkspaceStoriesPage isWorkspaceStoriesPage() {
+    public WorkspaceStoriesPage goToWorkspaceStoriesPage() {
         workspaceStoriesBtn.click();
         return new WorkspaceStoriesPage();
+    }
+
+    public String getWorkspaceUrl () {
+        return workspaceTabURL.getAttribute("href");
     }
 
 }

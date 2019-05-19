@@ -29,15 +29,14 @@ public class WorkspaceMorePage extends BasePage {
     @FindBy(id = "confirm_delete")
     private WebElement workspaceConfirmDeletBtn;
 
+    @FindBy(xpath = "//div[@id=\"save_success_bar\"]//div[@class=\"message\"]")
+    private WebElement workspaceConfirmmessage;
+
+
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(workspaceForm));
-    }
-
-    public String getWorkspaceSettingsURL() {
-        return workspaceTabURL.getAttribute("href");
-
     }
 
     public void workspaceDelete() {
@@ -56,4 +55,15 @@ public class WorkspaceMorePage extends BasePage {
         saveBtn.click();
     }
 
+    public String getWorkspaceUrl () {
+        return workspaceTabURL.getAttribute("href");
+    }
+
+    public String getWorkspaceSettingsURL() {
+        return workspaceTabURL.getAttribute("href");
+    }
+
+    public String getMessageSuccesfully() {
+        return workspaceConfirmmessage.getText();
+    }
 }

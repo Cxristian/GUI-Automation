@@ -1,8 +1,7 @@
 package core.selenium;
 
-import java.io.*;
 import java.util.Properties;
-import Reader.ReaderFileProperties;
+import core.utils.ReaderFileProperties;
 
 /**
  * Class to manage the config of web driver.

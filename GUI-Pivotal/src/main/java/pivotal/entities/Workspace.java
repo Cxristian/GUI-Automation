@@ -2,8 +2,7 @@ package pivotal.entities;
 
 public class Workspace {
     private String workspaceName;
-    private String urlWorkspace;
-    private String urlWorkspaceSettings;
+    private int id;
 
     public String getWorkspaceName() {
         return workspaceName;
@@ -13,19 +12,11 @@ public class Workspace {
         this.workspaceName = workspaceName;
     }
 
-    public String getUrlWorkspace() {
-        return urlWorkspace;
+    public int getId() {
+        return id;
     }
 
-    public void setUrlWorkspace(String urlWorkspace) {
-        this.urlWorkspace = urlWorkspace;
-    }
-
-    public String getUrlWorkspaceSettings() {
-        return urlWorkspaceSettings;
-    }
-
-    public void setUrlWorkspaceSettings(String urlWorkspaceSettings) {
-        this.urlWorkspaceSettings = urlWorkspaceSettings;
+    public void setId(int id) {
+        this.id = id;
     }
 }
